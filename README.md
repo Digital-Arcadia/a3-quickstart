@@ -10,7 +10,7 @@ Minimal end-to-end example showing how to integrate the [Arcadia Age API (A3)](h
 ## Setup
 
 ```bash
-git clone https://github.com/a3api/a3-quickstart.git
+git clone https://github.com/Digital-Arcadia/a3-quickstart.git
 cd a3-quickstart
 npm install
 
