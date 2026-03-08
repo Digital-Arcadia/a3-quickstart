@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ResultDisplay } from '../ResultDisplay';
 
 type OsSignal = 'under-13' | '13-15' | '16-17' | '18-plus' | 'not-available';
+type InteractionMode = 'touch' | 'pointer' | 'hybrid' | '';
 type IpType = 'residential' | 'education' | 'datacenter' | 'corporate';
 type ReferrerCategory = 'direct' | 'social_minor' | 'social_general' | 'parental_control' | 'search_engine' | 'unknown';
 type ConsentStatus = 'pending' | 'approved' | 'denied' | 'revoked';
@@ -17,6 +18,7 @@ export function SignalExplorer() {
   // Required fields
   const [osSignal, setOsSignal] = useState<OsSignal>('not-available');
   const [countryCode, setCountryCode] = useState('US');
+  const [interactionMode, setInteractionMode] = useState<InteractionMode>('');
 
   // Toggleable sections
   const [sections, setSections] = useState<Sections>({
@@ -51,6 +53,10 @@ export function SignalExplorer() {
       os_signal: osSignal,
       user_country_code: countryCode,
     };
+
+    if (interactionMode) {
+      req.interaction_mode = interactionMode;
+    }
 
     if (sections.contextual) {
       req.contextual_signals = {
@@ -135,6 +141,15 @@ export function SignalExplorer() {
             <div className="form-group">
               <label className="form-label">Country Code</label>
               <input className="form-input" value={countryCode} onChange={e => setCountryCode(e.target.value.toUpperCase())} maxLength={2} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Interaction Mode</label>
+              <select className="form-select" value={interactionMode} onChange={e => setInteractionMode(e.target.value as InteractionMode)}>
+                <option value="">(omit — auto-detect)</option>
+                <option value="touch">touch</option>
+                <option value="pointer">pointer</option>
+                <option value="hybrid">hybrid</option>
+              </select>
             </div>
           </div>
         </div>

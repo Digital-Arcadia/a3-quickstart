@@ -111,6 +111,28 @@ export function ResponseInspector() {
                 Full Signals
               </button>
               <button className="btn btn-secondary" style={{ fontSize: '0.75rem', padding: '0.35rem 0.65rem' }} onClick={() => setRequestJson(JSON.stringify({
+                os_signal: 'not-available',
+                user_country_code: 'US',
+                interaction_mode: 'pointer',
+                behavioral_metrics: {
+                  avg_click_precision: 0.85,
+                  mouse_velocity_mean: 650,
+                  mouse_path_straightness: 0.78,
+                  hover_dwell_time_ms: 420,
+                  typing_speed_wpm: 55,
+                  keystroke_interval_variance: 0.22,
+                  scroll_velocity: 500,
+                  form_completion_time_ms: 9500,
+                },
+                device_context: {
+                  os_version: 'Windows 11',
+                  is_high_contrast_enabled: false,
+                  screen_scale_factor: 1.5,
+                },
+              }, null, 2))}>
+                Pointer Mode
+              </button>
+              <button className="btn btn-secondary" style={{ fontSize: '0.75rem', padding: '0.35rem 0.65rem' }} onClick={() => setRequestJson(JSON.stringify({
                 os_signal: 'under-13',
                 user_country_code: 'US',
                 parental_consent_status: 'approved',
